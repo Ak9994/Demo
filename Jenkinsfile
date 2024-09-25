@@ -23,7 +23,6 @@ pipeline {
         }
         
         stage('Login to Docker Hub') {
-            steps stage('login'){
             steps {
                 bat 'docker login -u ak774 --password-stdin Salvere@881'
             }}
