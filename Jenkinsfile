@@ -22,9 +22,8 @@ pipeline {
         }
         stage('Login to Docker Hub') {
             steps {
-               docker.withRegistry('https://index.docker.io/v1/', 'ak774','Salvere@881') {
-                        dockerImage.push("${env.BUILD_ID}")
-                        dockerImage.push("latest")
+               docker.withRegistry([string(credentialsId: 'DockerPwd',variable:'dockerpwd']){
+                   bat 'docker login -u ak774 -p {dockerpwd}'
                 }
             }
         }
