@@ -21,8 +21,7 @@ pipeline {
                 bat 'docker build -t ak774/docker-test:%BUILD_NUMBER% .'
             }
         }
-        /*
-        stage('Login to Docker Hub') {
+        /*stage('Login to Docker Hub') {
             steps {
                withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
                     script {
@@ -47,3 +46,4 @@ pipeline {
                 }
             }
         }
+}
