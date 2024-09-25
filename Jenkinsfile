@@ -22,9 +22,13 @@ pipeline {
             }
         }
         
-        stage('Login to Docker Hub') {
+       stage('Login to Docker Hub') {
             steps {
-                bat 'docker login -u ak774 --password-stdin Salvere@881'
+               withCredentials([string(credentialsId: 'password', variable: 'password')]) {
+                    script {
+                        bat 'docker login -u ak774 -p ${password}'
+                    }
+                }
             }}
         
         stage('Push Image') {
