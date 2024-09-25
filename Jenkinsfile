@@ -23,9 +23,9 @@ pipeline {
         }
         stage('Login to Docker Hub') {
             steps {
-               withCredentials([string(credentialsId: 'dockerhub1', variable: 'dockerhub1')]) {
+               withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
                     script {
-                            bat 'docker login -u {$registry} --password-stdin ${registryCredentials}'
+                            bat 'docker login -u ak774 --password-stdin ${dockerhub}'
                     }
                 }
             }}
