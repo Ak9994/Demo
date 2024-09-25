@@ -1,6 +1,12 @@
 pipeline {
     agent any 
     
+    environment {
+        registry = "ak774/docker-test"
+        registryCredential = 'dockerhub'
+        dockerImage = ' '
+    }
+    
     stages { 
         stage('SCM Checkout') {
             steps {
@@ -11,7 +17,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {  
-                bat 'docker build -t ak774/node_app:%BUILD_NUMBER% .'
+                bat 'docker build -t ak774/docker-test:%BUILD_NUMBER% .'
             }
         }
         stage('Login to Docker Hub') {
@@ -25,7 +31,7 @@ pipeline {
         }
         stage('Push Image') {
             steps {
-                bat 'docker push ak774/node_app:%BUILD_NUMBER%'
+                bat 'docker push ak774/docker-test:%BUILD_NUMBER%'
             }
         }
     }
