@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         registry = "ak774/docker-test"
-        registryCredential = 'dockerhub'
+        registryCredential = 'dockerhub1'
         dockerImage = ' '
     }
     
@@ -25,7 +25,9 @@ pipeline {
             steps {
                withCredentials([string(credentialsId: 'dockerhub1', variable: 'dockerhub1')]) {
                     script {
-                        bat 'docker login -u dockerhub1 --password-stdin ${dockerhub1}'
+                        export user = registry
+                        export pwd = registryCredential
+                        bat 'docker login -u {$user} --password-stdin ${pwd}'
                     }
                 }
             }}
