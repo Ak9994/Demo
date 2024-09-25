@@ -25,7 +25,7 @@ pipeline {
             steps {
                withCredentials([string(credentialsId: 'dockerhub1', variable: 'dockerhub1')]) {
                     script {
-                        bat 'docker login -u dockerhub1 -p ${dockerhub1}'
+                        bat 'docker login -u dockerhub1 --password-stdin ${dockerhub1}'
                     }
                 }
             }}
