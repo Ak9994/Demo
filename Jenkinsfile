@@ -25,9 +25,7 @@ pipeline {
             steps {
                withCredentials([string(credentialsId: 'dockerhub1', variable: 'dockerhub1')]) {
                     script {
-                        export user = registry
-                        export pwd = registryCredential
-                        bat 'docker login -u {$user} --password-stdin ${pwd}'
+                            bat 'docker login -u {$registry} --password-stdin ${registryCredentials}'
                     }
                 }
             }}
