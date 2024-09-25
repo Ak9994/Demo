@@ -23,8 +23,7 @@ pipeline {
         stage('Login to Docker Hub') {
             steps {
                docker.withRegistry([string(credentialsId: 'DockerPwd',variable:'dockerpwd')]){
-                   bat 'docker login -u ak774 -p {dockerpwd}'
-                }
+                   script{ bat 'docker login -u ak774 -p {dockerpwd}' }
             }
         }
         stage('Push Image') {
