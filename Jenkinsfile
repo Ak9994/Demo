@@ -28,17 +28,15 @@ pipeline {
                     }
                 }
             }
-        }
         stage('Push Image') {
             steps {
                 bat 'docker push ak774/docker-test:%BUILD_NUMBER%'
             }
-        }
-    }
+        }}
     post {
         always {
             echo 'status'
             bat 'docker logout'
         }
-    }
-}}
+    }}
+}
