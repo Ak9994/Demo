@@ -15,6 +15,7 @@ pipeline {
                 }
             }
         }
+
         stage('Build Docker Image') {
             steps {  
                 bat 'docker build -t ak774/docker-test:%BUILD_NUMBER% .'
@@ -27,16 +28,18 @@ pipeline {
                         bat 'docker login -u ak774 -p ${password}'
                     }
                 }
-            }
+            }}
+
         stage('Push Image') {
             steps {
                 bat 'docker push ak774/docker-test:%BUILD_NUMBER%'
             }
         }}
-    post {
-        always {
-            echo 'status'
-            bat 'docker logout'
+
+        post {
+            always {
+                echo 'status'
+                bat 'docker logout'
+                }
+            }
         }
-    }}
-}
