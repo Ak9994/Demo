@@ -21,18 +21,12 @@ pipeline {
                 bat 'docker build -t ak774/docker-test:%BUILD_NUMBER% .'
             }
         }
-        /*stage('Login to Docker Hub') {
-            steps {
-               withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
-                    script {
-                            bat 'docker login -u ak774 --password-stdin ${dockerhub}'
-                    }
-                }
-            }}*/
-        stage('login'){
+        
+        stage('Login to Docker Hub') {
+            steps stage('login'){
             steps {
                 bat 'docker login -u ak774 --password-stdin Salvere@881'
-            }
+            }}
         
         stage('Push Image') {
             steps {
